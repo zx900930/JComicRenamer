@@ -21,6 +21,9 @@ echo "Stoping JComicDowloader..."
 #Please replace this line to your .jar directory.
 cd $HOME/Images/Comics/
 
+echo
+echo "Start searching for the new version."
+echo
 ls -rt | tac | grep 'JComicDownloader_v.*' -m 1 | read newapp
 
 if [[ ! -f $newapp ]]
@@ -40,7 +43,14 @@ mv $newapp JComicDownloader.jar
 echo
 echo "The new $newapp has been renamed to JComicDownloader.jar"
 echo
+sudo chmod r+x JComicDownloader.jar
+echo
+echo "Add Execute permission to the file."
+echo
 
+echo
+echo "Start searching for the old version."
+echo
 ls -rt | grep 'JComicDownloader.*' -m 1 | read oldapp
 
 if [[ ! -f $oldapp ]]
