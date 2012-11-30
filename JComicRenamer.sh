@@ -18,7 +18,9 @@ fi
 pkill java
 echo "Stoping JComicDowloader..."
 
+#Please replace this line to your .jar directory.
 cd $HOME/Images/Comics/
+
 ls -rt | tac | grep 'JComicDownloader_v.*' -m 1 | read newapp
 
 if [[ ! -f $newapp ]]
