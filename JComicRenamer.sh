@@ -24,12 +24,25 @@ cd $HOME/Images/Comics/
 echo
 echo "Start searching for the new version."
 echo
-ls -rt | tac | grep 'JComicDownloader_v.*' -m 1 | read newapp
+ls -rt | tac | grep 'JComicDownloader_v*' -m 1 | read newapp
 
-if [[ ! -f $newapp ]]
+if [ ! -f $newapp ]
 then
 echo
 echo "Could not find the new JComicDowloader program, please download it first!"
+echo
+echo "Exiting script..."
+echo
+exit 1
+echo
+echo "Start searching for the old version."
+echo
+ls -rt | grep 'JComicDownloader.*' -m 1 | read oldapp
+
+if [ ! -f $oldapp ]
+then
+echo
+echo "Could not find the old JComicDowloader program"
 echo
 echo "Exiting script..."
 echo
@@ -43,31 +56,13 @@ mv $newapp JComicDownloader.jar
 echo
 echo "The new $newapp has been renamed to JComicDownloader.jar"
 echo
-sudo chmod r+x JComicDownloader.jar
+echo "Replacing old version..."
 echo
-echo "Add Execute permission to the file."
+sudo chmod 775 JComicDownloader.jar
 echo
-
+echo "Add Execute permission to the file..."
+rm $newapp
 echo
-echo "Start searching for the old version."
-echo
-ls -rt | grep 'JComicDownloader.*' -m 1 | read oldapp
-
-if [[ ! -f $oldapp ]]
-then
-echo
-echo "Could not find the old JComicDowloader program"
-echo
-echo "Exiting script..."
-echo
-exit 1
-fi
-
-echo
-echo "Find old $oldapp"
-echo
-rm $oldapp
-echo
-echo "Old version：$oldapp has been removed."
+echo "Remove temp file..."
 echo
 exit 0
