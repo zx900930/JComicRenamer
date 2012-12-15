@@ -5,9 +5,9 @@ cd $HOME/Images/Comics/
 echo
 echo "Start searching for the new version."
 echo
-newapp=$(ls -rt | tac | grep 'JComicDownloader_v*' -m 1)
+newapp=$(ls -rt | tac | grep '^JComicDownloader_v.*jar$' -m 1)
 
-if [ $newapp="" ]
+if [ "1${newapp}" = "1" ];
 then
 echo
 echo "Could not find the new JComicDowloader program, please download it first!"
